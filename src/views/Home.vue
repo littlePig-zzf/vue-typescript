@@ -1,8 +1,9 @@
 <template>
-  <!-- <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div> -->
-    <div class="layout">
+  <!-- <div class="home"> -->
+    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
+  <!-- </div> -->
+  <div class="layout">
         <Layout>
             <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
                 <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
@@ -50,13 +51,14 @@ export default class Home extends Vue {
   get rotateIcon() {
     return ["menu-icon", this.isCollapsed ? "rotate-icon" : ""];
   }
-  get menuitemClasses() {
+  get menuitemClasses(): Array<string> {
     return ["menu-item", this.isCollapsed ? "collapsed-menu" : ""];
   }
 
   // methods
   collapsedSider() {
-    this.$refs.side1.toggleCollapse();
+    let el: any = this.$refs.side1;
+    el.toggleCollapse();
   }
 }
 </script>

@@ -1,4 +1,4 @@
-# ty-script
+# hello-world
 
 ## Project setup
 ```
