@@ -1,45 +1,19 @@
 <template>
-  <!-- <div class="home"> -->
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/> -->
-  <!-- </div> -->
-  <div class="layout">
-        <Layout>
-            <Sider ref="side1" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
-                <Menu active-name="1-2" theme="dark" width="auto" :class="menuitemClasses">
-                    <MenuItem name="1-1">
-                        <Icon type="ios-navigate"></Icon>
-                        <span>Option 1</span>
-                    </MenuItem>
-                    <MenuItem name="1-2">
-                        <Icon type="ios-search"></Icon>
-                        <span>Option 2</span>
-                    </MenuItem>
-                    <MenuItem name="1-3">
-                        <Icon type="ios-settings"></Icon>
-                        <span>Option 3</span>
-                    </MenuItem>
-                </Menu>
-            </Sider>
-            <Layout>
-                <Header :style="{padding: 0}" class="layout-header-bar">
-                    <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
-                </Header>
-                <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
-                    Content 
-                </Content>
-            </Layout>
-        </Layout>
-    </div>
+  <div class="home">
+    <HelloWorld msg="欢迎来到zzf的工厂！这里充满着各种神奇的事情，一起来看看嘛？" @btnHandle="btnHandle"/>
+    <span class="poster">
+      <img src="../assets/dl.jpg" alt="">
+    </span>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-// import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 @Component({
   components: {
-    // HelloWorld
+    HelloWorld
   }
 })
 export default class Home extends Vue {
@@ -60,9 +34,11 @@ export default class Home extends Vue {
     let el: any = this.$refs.side1;
     el.toggleCollapse();
   }
+
+  btnHandle() {}
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .layout {
   background: #f5f7f9;
   position: relative;
@@ -110,5 +86,37 @@ export default class Home extends Vue {
   transition: font-size 0.2s ease 0.2s, transform 0.2s ease 0.2s;
   vertical-align: middle;
   font-size: 22px;
+}
+
+.home {
+  .poster {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    font-size: 0;
+    overflow: hidden;
+    img {
+      border-radius: 10px;
+      z-index: 0;
+    }
+    &:hover {
+      &::before {
+        transform: rotate(90deg) translateX(320px);
+        transform-origin: 0 100%;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(172, 252, 255, 0.2);
+      border-radius: 10px;
+      z-index: 1;
+      transition: all 0.2s linear;
+    }
+  }
 }
 </style>
